@@ -19,6 +19,7 @@ class HomeScreenState extends State<HomeScreen> {
   late Future<void> dataFetchingFuture;
   // This dynamic List will store all the data
   static List<dynamic> eventData = [];
+  bool isOnline = true;
 
   @override
   void initState() {
@@ -36,7 +37,7 @@ class HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(
           'Events',
-          style: Utils.style1,
+          style: Utils.style1.copyWith(fontSize: HEIGHT * 0.023),
         ),
         actions: [
           Row(
@@ -61,30 +62,36 @@ class HomeScreenState extends State<HomeScreen> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error occurred while fetching data!'));
+            return Center(
+                child: Text(
+                    'Error occurred while fetching data!\n       (Probably you\'re offline!)'));
           }
-          return Scrollbar(
-            controller: _scrollController,
-            child: ListView.builder(
+          return Container(
+            width: WIDTH,
+            height: HEIGHT,
+            child: Scrollbar(
               controller: _scrollController,
-              itemExtent: HEIGHT / 6 - 7,
-              itemCount: eventData.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: EventWidget(
-                    title: eventData[index]['title'],
-                    description: eventData[index]['description'],
-                    imageUrl: eventData[index]['banner_image'].toString(),
-                    date_time: eventData[index]['date_time'],
-                    organiser_name: eventData[index]['organiser_name'],
-                    organiser_icon: eventData[index]['organiser_icon'],
-                    venue_name: eventData[index]['venue_name'],
-                    venue_city: eventData[index]['venue_city'],
-                    venue_country: eventData[index]['venue_country'],
-                  ),
-                );
-              },
+              child: ListView.builder(
+                controller: _scrollController,
+                itemExtent: HEIGHT / 6 - 7,
+                itemCount: eventData.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: EventWidget(
+                      title: eventData[index]['title'],
+                      description: eventData[index]['description'],
+                      imageUrl: eventData[index]['banner_image'].toString(),
+                      date_time: eventData[index]['date_time'],
+                      organiser_name: eventData[index]['organiser_name'],
+                      organiser_icon: eventData[index]['organiser_icon'],
+                      venue_name: eventData[index]['venue_name'],
+                      venue_city: eventData[index]['venue_city'],
+                      venue_country: eventData[index]['venue_country'],
+                    ),
+                  );
+                },
+              ),
             ),
           );
         },

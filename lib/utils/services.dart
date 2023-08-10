@@ -18,7 +18,6 @@ class DataServices {
         HomeScreenState.eventData = jsonData['content']['data'];
       else if (isSearching == "yes")
         SearchScreenState.eventData = jsonData['content']['data'];
-      print('ItemCount= ${HomeScreenState.eventData.length}');
     } else {
       print('Some Error Occurred');
     }

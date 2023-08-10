@@ -53,7 +53,7 @@ class EventDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-                height: HEIGHT / 4 + 15,
+                height: HEIGHT / 3 - 20,
                 width: WIDTH,
                 child: CachedNetworkImage(
                   imageUrl: imageUrl,
@@ -64,7 +64,7 @@ class EventDetailScreen extends StatelessWidget {
               child: Text(
                 title,
                 overflow: TextOverflow.clip,
-                style: Utils.style6,
+                style: Utils.style6.copyWith(fontSize: HEIGHT * 0.025),
               ),
             ),
             //Organizer's details
@@ -91,14 +91,17 @@ class EventDetailScreen extends StatelessWidget {
               padding: const EdgeInsets.all(18.0),
               child: Text(
                 'About Event',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: HEIGHT * 0.02, fontWeight: FontWeight.w500),
               ),
             ),
+            //Event Description
             Padding(
-              padding: const EdgeInsets.only(left: 18),
+              padding: const EdgeInsets.only(left: 18, right: 18),
               child: Text(
                 description,
-                style: Utils.style1,
+                textAlign: TextAlign.justify,
+                style: Utils.style1.copyWith(fontSize: 15),
                 overflow: TextOverflow.clip,
                 maxLines: 4,
               ),

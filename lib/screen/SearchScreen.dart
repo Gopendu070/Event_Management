@@ -68,7 +68,8 @@ class SearchScreenState extends State<SearchScreen> {
                     return Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
                     return Center(
-                        child: Text('Error occurred while fetching data!'));
+                        child: Text(
+                            'Error occurred while fetching data!\n       (Probably you\'re offline!)'));
                   }
                   return ListView.builder(
                     itemExtent: HEIGHT / 6 - 10,

@@ -28,8 +28,8 @@ class EventWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var WIDTH = MediaQuery.of(context).size.width;
-    var HEIGHT = MediaQuery.of(context).size.height;
+    final double WIDTH = MediaQuery.of(context).size.width;
+    final double HEIGHT = MediaQuery.of(context).size.height;
     if (venue_country == 'United States') {
       venue_country = 'US';
     }
@@ -81,43 +81,50 @@ class EventWidget extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    //Date and Time
-                    const SizedBox(height: 7),
-                    Text(
-                      dateTime,
-                      style: Utils.style3,
-                    ),
-                    const SizedBox(height: 4),
-                    //Event Title
-                    Text(
-                      title,
-                      style: Utils.style2,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                    const SizedBox(height: 7),
+                child: Padding(
+                  padding: HEIGHT > 950.0
+                      ? const EdgeInsets.only(top: 25)
+                      : const EdgeInsets.only(top: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //Date and Time
+                      Text(
+                        dateTime,
+                        style:
+                            Utils.style3.copyWith(fontSize: HEIGHT * 0.011 + 2),
+                      ),
+                      HEIGHT > 950 ? SizedBox(height: 10) : SizedBox(height: 6),
+                      //Event Title
+                      Text(
+                        title,
+                        style:
+                            Utils.style2.copyWith(fontSize: HEIGHT * 0.02 - 2),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
 
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.location_on_rounded,
-                          size: 17,
-                          color: Colors.grey[500],
-                        ),
-                        Expanded(
-                          child: Text(
-                            venue_details,
-                            style: Utils.style4,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
+                      HEIGHT > 950 ? SizedBox(height: 20) : SizedBox(height: 9),
+                      //Event Location
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_on_rounded,
+                            size: 17,
+                            color: Colors.grey[500],
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          Expanded(
+                            child: Text(
+                              venue_details,
+                              style: Utils.style4,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

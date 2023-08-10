@@ -30,6 +30,7 @@ class searchTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var WIDTH = MediaQuery.of(context).size.width;
+    var HEIGHT = MediaQuery.of(context).size.height;
     final dateTime =
         DateFormat('dd MMM - E - h:mm a').format(DateTime.parse(date_time));
     return InkWell(
@@ -81,15 +82,21 @@ class searchTile extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 30),
+                      HEIGHT > 950
+                          ? SizedBox(height: 30)
+                          : SizedBox(height: 22),
+                      //Date Time
                       Text(
                         dateTime,
-                        style: Utils.style3,
+                        style:
+                            Utils.style3.copyWith(fontSize: HEIGHT * 0.011 + 2),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 11),
+                      //Title
                       Text(
                         title,
-                        style: Utils.style2,
+                        style:
+                            Utils.style2.copyWith(fontSize: HEIGHT * 0.02 - 2),
                       ),
                     ],
                   ),
