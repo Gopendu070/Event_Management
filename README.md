@@ -1,8 +1,8 @@
-# events
+# Events
 
-A new Flutter project.
+This app shows a basic event management app.
 
-## Getting Started
+# The APK is available inside the APK folder
 
 This project is a starting point for a Flutter application.
 
